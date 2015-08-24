@@ -25,4 +25,14 @@ angular.module('app', []) //brings in non-angular dependencies
 		vm.cars[vm.editCar.place] = vm.editCar.name;
 		vm.editing = false;
 	}
+
+	vm.exp = function() {
+		if((1+1) === 2) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		//ng-if REMOVES it from the DOM tree, not hides it
+	}
 }]);

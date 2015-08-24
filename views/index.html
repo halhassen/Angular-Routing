@@ -8,6 +8,11 @@
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
 </head>
 <body>
+	<style>
+		.input-success {
+			border: 3px solid green;
+		}
+	</style>
 	<!--<div ng-controller="OldController">
 		<h1>The App Works!</h1>
 		<input class="form-control" ng-model="stuff">
@@ -19,11 +24,12 @@
 		</div>
 	</div>-->
 	<div ng-controller="OtherController as vm">
-		<h1>Cars</h1>
+		<h1 ng-if="vm.checked">Cars</h1>
+		<input type="checkbox" ng-model="vm.checked" ng-int="checked=true"/>
 		<div ng-hide="vm.editing">
 			<!--Create car form-->
 			<h3>Create Car</h3>
-			<input class="form-control" ng-model="vm.newCar"/>
+			<input class="form-control" ng-class="{'input-success': vm.newCar}" ng-model="vm.newCar"/>
 			<button type="button" ng-disabled="!vm.newCar" ng-click="vm.create()" class="btn btn-success">Create</button> 
 			<h2>{{vm.newCar}}</h2>
 			<hr>
@@ -39,10 +45,14 @@
 			<h4>{{car}}</h4>
 			<button type="button" class="btn btn-danger" ng-click="vm.cars.splice($index, 1)">Delete</button>
 			<button type="button" class="btn btn-warning" ng-click="vm.startEdit($index)">Edit</button>
-		</div>
+			<p ng-if="vm.newCar">CARS!</p>
 
-	</div>
-	<script src="/angular/angular.min.js"></script>
-	<script src="/javascript/app.js"></script>
-</body>
-</html>
+		</div>
+		<p class="row col-md-12" ng-if="vm.exp()">I'm not from Earth, from far away,
+			I bust through chests like baby greys</p>
+
+		</div>
+		<script src="/angular/angular.min.js"></script>
+		<script src="/javascript/app.js"></script>
+	</body>
+	</html>
