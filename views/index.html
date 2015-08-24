@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html ng-app="app">
 <head>
 	<title>coder-camps-js</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +8,41 @@
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
 </head>
 <body>
-	<h1>The App Works!</h1>
+	<!--<div ng-controller="OldController">
+		<h1>The App Works!</h1>
+		<input class="form-control" ng-model="stuff">
+		<button ng-click="vm.stuff = "test"" type="button" class="btn btn-danger">Delete</button>
+		<button ng-disabled="!vm.stuff" ng-click="vm.create()" type="button" class="btn btn-primary">Create</button>
+		<button ng-click="popup()" type="button" class="btn btn-info">Click here</button>
+		<div ng-model="thing">
+			<h2>{{thing}}</h2>
+		</div>
+	</div>-->
+	<div ng-controller="OtherController as vm">
+		<h1>Cars</h1>
+		<div ng-hide="vm.editing">
+			<!--Create car form-->
+			<h3>Create Car</h3>
+			<input class="form-control" ng-model="vm.newCar"/>
+			<button type="button" ng-disabled="!vm.newCar" ng-click="vm.create()" class="btn btn-success">Create</button> 
+			<h2>{{vm.newCar}}</h2>
+			<hr>
+		</div>
+		<div ng-show="vm.editing">
+			<!--Edit car form-->
+			<h3>Edit Car</h3>
+			<input type="text" class="form-control" ng-model="vm.editCar.name"/>
+			<button type="button" class="btn btn-primary" ng-click="vm.submitEdit()">Submit</button>
+
+		</div>
+		<div class="well row col-md-4 container" ng-repeat="car in vm.cars track by $index">
+			<h4>{{car}}</h4>
+			<button type="button" class="btn btn-danger" ng-click="vm.cars.splice($index, 1)">Delete</button>
+			<button type="button" class="btn btn-warning" ng-click="vm.startEdit($index)">Edit</button>
+		</div>
+
+	</div>
+	<script src="/angular/angular.min.js"></script>
 	<script src="/javascript/app.js"></script>
 </body>
 </html>
