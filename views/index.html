@@ -8,10 +8,47 @@
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
 </head>
 <body>
-	
+	<style>
+		.input-success {
+			background: lightblue;
+		}
+	</style>
+	<div ng-controller="FormController as vm">
+		<form ng-submit="vm.register()" name="registration" class="col-sm-6 col-sm-offset-3">
+			<div class="form-group">
+				<input type="text" name="first" ng-model="vm.user.first" ng-required="true" class="form-control" ng-class="{'input-success': registration.first.$valid}"/>
+				<p>{{registration.first.$error}}</p>
+			</div>
+			<div class="form-group">
+				<input type="text" name="last" ng-model="vm.user.last" ng-required="true" class="form-control" ng-class="{'input-success': registration.last.$valid}"/>
+				<p>{{registration.last.$error}}</p>
+			</div>
+			<div class="form-group">
+				<input type="email" name="email" ng-model="vm.user.email" ng-required="true" class="form-control" ng-class="{'input-success': registration.email.$valid, 'input-fail': registration.email.$error.email && registration.email.$dirty}"/>
+				<p>{{registration.email.$error}}</p>
+				<div ng-show="!registration.email.$valid && registration.email.$dirty">
+					Please input a valid email address.
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="text" name="username" ng-model="vm.user.username" ng-required="true" ng-minlength="6" class="form-control" ng-class="{'input-success': registration.username.$valid}"/>
+				<p>{{registration.username.$error}}</p>
+			</div>
+			<div class="form-group">
+				<input type="password" name="password" ng-model="vm.user.password" ng-required="true" ng-minlength="6" class="form-control" ng-class="{'input-success': registration.password.$valid}"/>
+				<p>{{registration.password.$error}}</p>
+			</div>
+			<div class="form-group">
+				<input type="password" name="password_confirm" ng-model="vm.user.password_confirm" ng-required="true" class="form-control" ng-class="{'input-success': registration.password_confirm.$valid}"/>
+			</div>
+			<div class="form-group">
+				<input type="submit" ng-disabled="!registration.$valid" class="btn btn-success btn-block"/>
+			</div>
+		</form>
+	</div>
 
 
-	
+
 	<script src="/angular/angular.min.js"></script>
 	<script src="/javascript/app.js"></script>
 </body>
