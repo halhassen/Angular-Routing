@@ -1,0 +1,8 @@
+<h1>{{vm.page}}</h1>
+<a class="btn btn-large btn-default" ui-sref="CreateDog">Create a Dog</a>
+
+<div class="container well" ng-repeat="d in vm.dogs">
+	<h3>{{d.name}}</h3>
+	<h3>{{d.breed}}</h3>
+	<h3>{{d.age}}</h3>
+</div>
